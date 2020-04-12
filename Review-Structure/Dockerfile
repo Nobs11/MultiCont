@@ -12,8 +12,8 @@ ADD . /app2
 RUN pip install --trusted-host pypi.python.org -r
 requirements.txt
 
-# Make port 9500 available to the world outside this container
-EXPOSE 9500
+# Make port 9000 available to the world outside this container
+EXPOSE 9000
 
 # Define environment variable
 ENV NAME World
