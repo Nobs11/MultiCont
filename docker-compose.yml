@@ -1,21 +1,35 @@
 version: '3'
+
 services:
-  catalog-module:
-     image: nobs11/catalog-service
-     ports:
-      - "8200:8200"
+  catalog-service:
+    image: nobs11/catalog-service
+    ports: 
+     - "8200:8200"
   redis:
-     image: redis:alpine
-  Review-Module:
-     image: nobs11/review-service
-     ports:
-      - "9000:9000"
-  Order-Module:
-     image: nobs11/order-service
-     ports:
-       - "9500:9500"
-  Main-Page:
-     image: nobs11/main-page
-     build: .
-     ports:
-      - "8700:8700"
+    image: redis:alpine
+  review-service:
+    image: nobs11/review-service
+    ports:
+    - "9000:9000"
+    restart: always
+    deploy:
+      resources:
+        limits:
+          cpus: '0.01'
+          memory: 50M
+        reservations:
+          cpus: '0.001'
+          memory: 20M
+  order-service:
+    image: nobs11/order-service
+    ports:
+    - "9500:9500"
+    restart: always
+    deploy:
+      resources:
+        limits:
+          cpus: '0.01'
+          memory: 50M
+        reservations:
+          cpus: '0.001'
+          memory: 20M
